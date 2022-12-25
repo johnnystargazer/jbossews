@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/header :: common_header"></head>
+<body>
+	<br />
+	<div class="container">
+		<div class="well">
+			<h1 data-th-text="#{views_message.index.layout_message_manage}">message</h1>
+
+			<form th:action="@{/message}" method="POST" model="message">
+				<table>
+					<tr>
+						<td><textarea name="text" rows="2" cols="40"
+								class="input-small" required="true" accept-charset="UTF-8"></textarea></td>
+						<td style="padding: 12px">
+							<button type="submit" class="btn btn-primary">投稿</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<table
+			class="table table-striped table-bordered table-hover table-condensed">
+			<tr>
+				<th data-th-text="#{views_message.index.th_user_id}" width="100px">ユーザID</th>
+				<th data-th-text="#{views_message.index.th_text}">メッセージ</th>
+				<th width="50px" align="center">削除</th>
+			</tr>
+			<tr data-th-each="message : ${messageList}">
+				<td data-th-text="${message.user_id}">1</td>
+				<td>
+					<p data-th-text="${message.text}">messsage</p>
+				</td>
+				<td align="center"><a href="#" class="text-right"
+					data-th-href="@{|/message/edit/${message.id}?action=delete|}">
+						<p class="glyphicon glyphicon-trash"></p>
+				</a></td>
+			</tr>
+		</table>
+		<a href="#" class="btn btn-success"
+			data-th-href="@{|/message/before?page=${page}|}"
+			data-th-text="#{views_message.index.link_before}">前のページへ</a>
+		<hidden th:if="${hasNextPage}"> <a href="#"
+			class="btn btn-warning"
+			data-th-href="@{|/message/after?page=${page}|}"
+			data-th-text="#{views_message.index.link_after}">次のページへ</a> </hidden>
+		<a href="#" class="btn btn-danger" data-th-href="@{/}"
+			data-th-text="#{views_message.index.link_back}">元に戻る</a>
+		<footer th:include="/common/footer :: common_footer"></footer>
+	</div>
+</body>
+</html>

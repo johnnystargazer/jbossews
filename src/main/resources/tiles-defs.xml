@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name=".mainLayout" template="common/layout">
+		<put-attribute name="header" value="common/header" />
+		<put-attribute name="footer" value="common/footer" />
+	</definition>
+	<definition name=".tiles.*" extends=".mainLayout">
+		<put-attribute name="side" value="{1}" />
+	</definition>
+</tiles-definitions>  

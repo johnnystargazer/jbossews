@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+	<head th:include="/common/header :: common_header"></head>
+	<body>
+		<br/>
+		<div class="container">
+			<div class="well">
+				<h1>アカウント管理画面</h1>
+			</div>
+			<form th:action="@{/account/}" class="well form-inline" method="POST" model="account">
+				Email :
+				<input type="hidden" th:value="*{account.id}" name="id"/>
+				<input type="text" class="input-small" th:value="*{account.email}" name="email" placeholder="Email" required="true"/>
+				<br/>
+				YourName :
+				<input type="text" class="input-small" th:value="*{account.name}"  name="name" placeholder="Your Name" required="true"/>
+				<br/>
+				Password :
+				<input type="password" class="input-small" th:value="*{account.password}" name="password" placeholder="Password" required="true"/>
+				<br/>
+				<br/>
+				<button type="submit" class="btn btn-primary">
+					更新
+				</button>
+				<a href="#" class="btn btn-success" data-th-href="@{/account}">キャンセル</a>
+			</form>
+		</div>
+	</body>
+</html>

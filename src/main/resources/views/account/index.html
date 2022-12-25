@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+	<head th:include="/common/header :: common_header"></head>
+	<body>
+		<br/>
+		<div class="container">
+			<div class="well">
+				<h1 data-th-text="#{views_account.index.layout_account_manage}">アカウント管理画面</h1>
+			</div>
+			<br/>
+			<a href="#" class="btn btn-primary" data-th-href="@{/account/create}" data-th-text="#{views_account.index.btn_entry}">新規登録</a>
+			<br/>
+			<br/>
+			<table class="table table-striped table-bordered table-hover table-condensed">
+				<tr>
+					<th data-th-text="#{views_account.index.th_id}">ID</th>
+					<th data-th-text="#{views_account.index.th_email}">E-mailアドレス</th>
+					<th data-th-text="#{views_account.index.th_name}">名前</th>
+					<th data-th-text="#{views_account.index.th_operation}">操作</th>
+				</tr>
+				<tr data-th-each="account : ${accountList}">
+					<td data-th-text="${account.id}">1</td>
+					<td data-th-text="${account.email}">email@example.com</td>
+					<td data-th-text="${account.name}">名前</td>
+					<td><a href="#" class="btn btn-default" data-th-href="@{|/account/edit/${account.id}|}" data-th-text="#{views_account.index.btn_edit}">編集</a><a href="#" class="btn btn-default" data-th-href="@{|/account/edit/${account.id}?action=delete|}" data-th-text="#{views_account.index.btn_delete}">削除</a></td>
+				</tr>
+			</table>
+			<a href="#" class="btn btn-success" data-th-href="@{|/account/before?page=${page}|}" data-th-text="#{views_account.index.link_before}">前のページへ</a>
+			<hidden th:if="${hasNextPage}">
+				<a href="#" class="btn btn-warning" data-th-href="@{|/account/after?page=${page}|}" data-th-text="#{views_account.index.link_after}">次のページへ</a>
+			</hidden>
+			<a href="#" class="btn btn-danger" data-th-href="@{/}" data-th-text="#{views_account.index.link_back}">元に戻る</a>
+			<footer th:include="/common/footer :: common_footer"></footer>
+		</div>
+	</body>
+</html>
